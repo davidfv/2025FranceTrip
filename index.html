@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le Tour de France… à Deux</title>
-  <style>
+ <style>
     body { font-family: sans-serif; padding: 2rem; text-align: center; }
     img { max-width: 90vw; height: auto; border-radius: 12px; margin-top: 1rem; }
-    select { font-size: 1rem; padding: 0.5rem; margin-top: 1rem; }
+    select { font-size: 1.1rem; padding: 0.75rem; margin-top: 1rem; width: 95%; max-width: 700px; border-radius: 8px; }
     .description { margin-top: 1rem; font-size: 1.1rem; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; }
     .link { margin-top: 1rem; font-size: 1rem; color: #0066cc; }
   </style>
@@ -24,7 +24,7 @@
   <script>
     const itinerary = [
       { Date: "2025-05-14", Location: "Lancaster, CA", Description: "Starting point of the trip from sunny Southern California.", Link: "https://en.wikipedia.org/wiki/Lancaster,_California" },
-      { Date: "2025-05-15", Location: "International Flight: LAX-Amsterdam-Bordeaux", Description: "Overnight flight to Europe via Amsterdam, bound for Bordeaux." },
+      { Date: "2025-05-15", Location: "Flight: LAX-Amsterdam-Bordeaux", Description: "Overnight flight to Europe via Amsterdam, bound for Bordeaux." },
       { Date: "2025-05-16", Location: "Bordeaux", Description: "Famous for its wine, Bordeaux features 18th-century architecture and a vibrant riverside atmosphere.", Link: "https://en.wikipedia.org/wiki/Bordeaux" },
       { Date: "2025-05-17", Location: "Périgueux", Description: "A historic town in the Dordogne with Roman ruins and medieval charm.", Link: "https://en.wikipedia.org/wiki/P%C3%A9rigueux" },
       { Date: "2025-05-18", Location: "Sarlat-la-Canéda", Description: "A picturesque medieval town with cobbled streets and a bustling market square.", Link: "https://en.wikipedia.org/wiki/Sarlat-la-Can%C3%A9da" },
@@ -48,7 +48,7 @@
       { Date: "2025-06-05", Location: "Annecy", Description: "More time to stroll its old town and enjoy lakeside relaxation.", Link: "https://en.wikipedia.org/wiki/Annecy" },
       { Date: "2025-06-06", Location: "Chamonix", Description: "A mountaineering haven at the foot of Mont Blanc.", Link: "https://en.wikipedia.org/wiki/Chamonix" },
       { Date: "2025-06-07", Location: "Yvoire", Description: "A medieval flower-filled village on the shores of Lake Geneva.", Link: "https://en.wikipedia.org/wiki/Yvoire" },
-      { Date: "2025-06-08", Location: "International Flight: Geneva-London-LAX", Description: "Return flight home, filled with memories from the journey." }
+      { Date: "2025-06-08", Location: "Flight: Geneva-London-LAX", Description: "Return flight home, filled with memories from the journey." }
     ];
 
     function displayEntry(dateStr) {
