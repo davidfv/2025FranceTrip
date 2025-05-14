@@ -4,12 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le Tour de France… à Deux</title>
- <style>
+  <style>
     body { font-family: sans-serif; padding: 2rem; text-align: center; }
     img { max-width: 90vw; height: auto; border-radius: 12px; margin-top: 1rem; }
-    select { font-size: 1.1rem; padding: 0.75rem; margin-top: 1rem; width: 95%; max-width: 700px; border-radius: 8px; }
+    select {
+      font-size: 1rem;
+      padding: 0.5rem;
+      width: 60%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
     .description { margin-top: 1rem; font-size: 1.1rem; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; }
     .link { margin-top: 1rem; font-size: 1rem; color: #0066cc; }
+  @media (max-width: 600px) {
+    select {
+      width: 90%;
+      font-size: 1rem;
+    }
+  }
   </style>
 </head>
 <body>
