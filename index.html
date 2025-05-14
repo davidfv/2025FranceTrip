@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Tour de France… à Deux</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; text-align: center; }
+    img { max-width: 90vw; height: auto; border-radius: 12px; margin-top: 1rem; }
+    select { font-size: 1rem; padding: 0.5rem; margin-top: 1rem; }
+    .description { margin-top: 1rem; font-size: 1.1rem; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .link { margin-top: 1rem; font-size: 1rem; color: #0066cc; }
+  </style>
+</head>
+<body>
+  <h1>Grand French Escape</h1>
+  <img src="france2025.png" alt="France Scenic Banner" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-top: 1rem;" />
+  <div id="location"></div>
+  <select id="dateSelector"><option>Loading...</option></select>
+  <div id="image"></div>
+  <div id="description" class="description"></div>
+  <div id="link" class="link"></div>
+
+  <script>
+    const itinerary = [
+      { Date: "2025-05-14", Location: "Lancaster, CA", Description: "Starting point of the trip from sunny Southern California.", Link: "https://en.wikipedia.org/wiki/Lancaster,_California" },
+      { Date: "2025-05-15", Location: "International Flight: LAX-Amsterdam-Bordeaux", Description: "Overnight flight to Europe via Amsterdam, bound for Bordeaux." },
+      { Date: "2025-05-16", Location: "Bordeaux", Description: "Famous for its wine, Bordeaux features 18th-century architecture and a vibrant riverside atmosphere.", Link: "https://en.wikipedia.org/wiki/Bordeaux" },
+      { Date: "2025-05-17", Location: "Périgueux", Description: "A historic town in the Dordogne with Roman ruins and medieval charm.", Link: "https://en.wikipedia.org/wiki/P%C3%A9rigueux" },
+      { Date: "2025-05-18", Location: "Sarlat-la-Canéda", Description: "A picturesque medieval town with cobbled streets and a bustling market square.", Link: "https://en.wikipedia.org/wiki/Sarlat-la-Can%C3%A9da" },
+      { Date: "2025-05-19", Location: "Dordogne Region", Description: "Known for prehistoric caves, châteaux, and scenic river valleys.", Link: "https://en.wikipedia.org/wiki/Dordogne" },
+      { Date: "2025-05-20", Location: "Rocamadour", Description: "A cliffside pilgrimage village offering breathtaking views and religious heritage.", Link: "https://en.wikipedia.org/wiki/Rocamadour" },
+      { Date: "2025-05-21", Location: "Saint-Cirq-Lapopie", Description: "Perched above the Lot River, this village is a gem of southern France.", Link: "https://en.wikipedia.org/wiki/Saint-Cirq-Lapopie" },
+      { Date: "2025-05-22", Location: "Albi", Description: "Birthplace of Toulouse-Lautrec, Albi is famed for its red-brick cathedral and museum.", Link: "https://en.wikipedia.org/wiki/Albi" },
+      { Date: "2025-05-23", Location: "Carcassonne", Description: "A walled medieval fortress city that looks like a real-life fairy tale.", Link: "https://en.wikipedia.org/wiki/Carcassonne" },
+      { Date: "2025-05-24", Location: "Nîmes", Description: "Home to some of the best-preserved Roman architecture in France, including the Arena of Nîmes.", Link: "https://en.wikipedia.org/wiki/N%C3%AEmes" },
+      { Date: "2025-05-25", Location: "Les Baux-de-Provence", Description: "A stunning village built into rock, with panoramic views of Provence.", Link: "https://en.wikipedia.org/wiki/Les_Baux-de-Provence" },
+      { Date: "2025-05-26", Location: "Avignon", Description: "Famous for its bridge and Papal Palace, Avignon has deep historic and religious roots.", Link: "https://en.wikipedia.org/wiki/Avignon" },
+      { Date: "2025-05-27", Location: "Cassis", Description: "A charming fishing port known for its cliffs and coves (calanques).", Link: "https://en.wikipedia.org/wiki/Cassis" },
+      { Date: "2025-05-28", Location: "Nice", Description: "A stylish Riviera city with beaches, markets, and Mediterranean charm.", Link: "https://en.wikipedia.org/wiki/Nice" },
+      { Date: "2025-05-29", Location: "Nice", Description: "Another day in Nice to enjoy its promenades and art museums.", Link: "https://en.wikipedia.org/wiki/Nice" },
+      { Date: "2025-05-30", Location: "Menton", Description: "A pastel-colored town near the Italian border, famed for its gardens and citrus.", Link: "https://en.wikipedia.org/wiki/Menton" },
+      { Date: "2025-05-31", Location: "Grasse", Description: "World capital of perfume, with factories and floral history to explore.", Link: "https://en.wikipedia.org/wiki/Grasse" },
+      { Date: "2025-06-01", Location: "Moustiers-Sainte-Marie", Description: "Nestled in the cliffs above a gorge, this village is known for ceramics and dramatic scenery.", Link: "https://en.wikipedia.org/wiki/Moustiers-Sainte-Marie" },
+      { Date: "2025-06-02", Location: "Gordes", Description: "A stone-built hilltop village overlooking the Luberon valley.", Link: "https://en.wikipedia.org/wiki/Gordes" },
+      { Date: "2025-06-03", Location: "Orange", Description: "Features a UNESCO-listed Roman theater and triumphal arch.", Link: "https://en.wikipedia.org/wiki/Orange,_Vaucluse" },
+      { Date: "2025-06-04", Location: "Annecy", Description: "Called the 'Venice of the Alps' for its canals and alpine lake views.", Link: "https://en.wikipedia.org/wiki/Annecy" },
+      { Date: "2025-06-05", Location: "Annecy", Description: "More time to stroll its old town and enjoy lakeside relaxation.", Link: "https://en.wikipedia.org/wiki/Annecy" },
+      { Date: "2025-06-06", Location: "Chamonix", Description: "A mountaineering haven at the foot of Mont Blanc.", Link: "https://en.wikipedia.org/wiki/Chamonix" },
+      { Date: "2025-06-07", Location: "Yvoire", Description: "A medieval flower-filled village on the shores of Lake Geneva.", Link: "https://en.wikipedia.org/wiki/Yvoire" },
+      { Date: "2025-06-08", Location: "International Flight: Geneva-London-LAX", Description: "Return flight home, filled with memories from the journey." }
+    ];
+
+    function displayEntry(dateStr) {
+      const entry = itinerary.find(day => day.Date === dateStr);
+      if (entry) {
+        document.getElementById("location").innerHTML = `<h2>${entry.Location}</h2>`;
+        document.getElementById("description").innerText = entry.Description || "";
+        document.getElementById("link").innerHTML = entry.Link ? `<a href="${entry.Link}" target="_blank">Learn more about ${entry.Location}</a>` : "";
+
+        const locationQuery = encodeURIComponent(entry.Location.replace(/[^a-zA-ZÀ-ÿ\s-]/g, '').split(' ')[0].trim());
+        const imgUrl = `https://source.unsplash.com/800x500/?${locationQuery},france`;
+        document.getElementById("image").innerHTML = `<img src="${imgUrl}" alt="${entry.Location}" onerror="this.src='https://source.unsplash.com/800x500/?france';" />`;
+      } else {
+        document.getElementById("location").innerHTML = `<h2>No itinerary entry for ${dateStr}</h2>`;
+        document.getElementById("image").innerHTML = "";
+        document.getElementById("description").innerText = "";
+        document.getElementById("link").innerHTML = "";
+      }
+    }
+
+    function init() {
+      const select = document.getElementById("dateSelector");
+      select.innerHTML = "";
+
+      itinerary.forEach(day => {
+        const option = document.createElement("option");
+        option.value = day.Date;
+        option.text = `${day.Date} — ${day.Location}`;
+        select.appendChild(option);
+      });
+
+      const today = new Date().toISOString().split('T')[0];
+      const defaultDate = itinerary.some(day => day.Date === today) ? today : itinerary[0].Date;
+      select.value = defaultDate;
+      displayEntry(defaultDate);
+
+      select.addEventListener("change", (e) => {
+        displayEntry(e.target.value);
+      });
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
